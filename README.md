@@ -90,7 +90,7 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 
 ## Próximos Passos
 
-### Criar novos módulos
+### Criar novas funcionalidades
 - [ ] Banco de Dados Geodésicos
 - [ ] BNGB (Banco de Nomes Geográficos do Brasil)
 - [ ] Calendário (Cronograma de ações e publicações)
@@ -110,6 +110,7 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 
 ### Melhorias
 - [ ] **Consistência de idiomas**: A API do IBGE utiliza parâmetros em português (ex: `order_by: "nome"`), mas as structs retornadas usam campos em inglês (ex: `name`). Avaliar se devemos aceitar ambos os formatos ou padronizar.
+- [ ] **Exemplos práticos com Elixir & Gleam**: Criar exemplos de uso real da biblioteca demonstrando análise de dados geográficos e estatísticos do IBGE.
 
 ## Contribuindo
 
