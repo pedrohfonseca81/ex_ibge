@@ -65,47 +65,51 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 
 ---
 
+## Funcionalidades
+
+### Localidades
+- **Municípios** (`ExIbge.Locality.Municipality`)
+- **Estados/UFs** (`ExIbge.Locality.State`)
+- **Macrorregiões** (`ExIbge.Locality.Region`)
+- **Mesorregiões** (`ExIbge.Locality.Mesoregion`)
+- **Microrregiões** (`ExIbge.Locality.Microregion`)
+- **Regiões Imediatas** (`ExIbge.Locality.ImmediateRegion`)
+- **Regiões Intermediárias** (`ExIbge.Locality.IntermediateRegion`)
+- **Distritos** (`ExIbge.Locality.District`)
+- **Subdistritos** (`ExIbge.Locality.Subdistrict`)
+- **Países** (`ExIbge.Locality.Country`)
+- **Aglomeração Urbana** (`ExIbge.Locality.UrbanAgglomeration`)
+- **Regiões Metropolitanas** (`ExIbge.Locality.MetropolitanRegion`)
+- **Regiões Integradas de Desenvolvimento** (`ExIbge.Locality.IntegratedDevelopmentRegion`)
+
+### Outras APIs
+- **Agregados** (`ExIbge.Aggregate`) - Séries históricas e pesquisas (SIDRA)
+- **Nomes** (`ExIbge.Name`) - Frequência de nomes no Censo
+
+---
+
 ## Próximos Passos
 
-Abaixo estão os módulos e APIs do serviço de Localidades do IBGE que ainda precisam ser implementados:
+### Criar novos módulos
+- [ ] Banco de Dados Geodésicos
+- [ ] BNGB (Banco de Nomes Geográficos do Brasil)
+- [ ] Calendário (Cronograma de ações e publicações)
+- [ ] CNAE (Classificação Nacional de Atividades Econômicas)
+- [ ] hgeoHNOR (Conversão de altitudes)
+- [ ] Malhas Geográficas
+- [ ] Metadados (Metadados de pesquisas)
+- [ ] Notícias (Agência IBGE Notícias)
+- [ ] Países (Indicadores socioeconômicos globais)
+- [ ] Pesquisas (Censo, Brasil Cidades, etc.)
+- [ ] PPP (Posicionamento por Ponto Preciso)
+- [ ] Produtos (Estatística e geociências)
+- [ ] ProGriD (Transformação de coordenadas)
+- [ ] Publicações (Biblioteca do IBGE)
+- [ ] RBMC (Rede Brasileira de Monitoramento Contínuo)
+- [ ] RMPG (Rede Maregráfica Permanente para Geodésia)
 
-### Localidade
-
-- [x] **Municípios** (`ExIbge.Locality.Municipality`)
-- [x] **Estados/UFs** (`ExIbge.Locality.State`)
-- [x] **Macrorregiões** (`ExIbge.Locality.Region`)
-- [x] **Mesorregiões** (`ExIbge.Locality.Mesoregion`)
-- [x] **Microrregiões** (`ExIbge.Locality.Microregion`)
-- [x] **Regiões Imediatas** (`ExIbge.Locality.ImmediateRegion`)
-- [x] **Regiões Intermediárias** (`ExIbge.Locality.IntermediateRegion`)
-- [x] **Distritos** (`ExIbge.Locality.District`)
-- [x] **Subdistritos** (`ExIbge.Locality.Subdistrict`)
-- [x] **Paises** (`ExIbge.Locality.Country`)
-- [x] **Aglomeração Urbana** (`ExIbge.Locality.UrbanAgglomeration`)
-- [x] **Regiões Metropolitanas** (`ExIbge.Locality.MetropolitanRegion`)
-- [x] **Regiões Integradas de Desenvolvimento** (`ExIbge.Locality.IntegratedDevelopmentRegion`)
-
-### Outros Módulos
-
-- [x] **Agregados** (Análise multidimensional)
-- [ ] **Banco de Dados Geodésicos** (Estações geodésicas)
-- [ ] **BNGB** (Banco de Nomes Geográficos do Brasil)
-- [ ] **Calendário** (Cronograma de ações e publicações)
-- [ ] **CNAE** (Classificação Nacional de Atividades Econômicas)
-- [ ] **hgeoHNOR** (Conversão de altitudes)
-- [ ] **Malhas Geográficas** (Malhas e formatos diversos)
-- [ ] **Metadados** (Metadados de pesquisas)
-- [x] **Nomes** (Nomes mais comuns no Brasil)
-- [ ] **Notícias** (Agência IBGE Notícias)
-- [ ] **Países** (Indicadores socioeconômicos globais)
-- [ ] **Pesquisas** (Dados do Censo, Brasil Cidades, etc.)
-- [ ] **PPP** (Posicionamento por Ponto Preciso - Dados GNSS)
-- [ ] **Produtos** (Produtos de estatística e geociências)
-- [ ] **ProGriD** (Transformação de coordenadas)
-- [ ] **Publicações** (Biblioteca do IBGE)
-- [ ] **RBMC** (Rede Brasileira de Monitoramento Contínuo)
-- [ ] **RMPG** (Rede Maregráfica Permanente para Geodésia)
-
+### Melhorias
+- [ ] **Consistência de idiomas**: A API do IBGE utiliza parâmetros em português (ex: `order_by: "nome"`), mas as structs retornadas usam campos em inglês (ex: `name`). Avaliar se devemos aceitar ambos os formatos ou padronizar.
 
 ## Contribuindo
 
@@ -113,6 +117,4 @@ Contribuições são muito bem-vindas! Seja corrigindo bugs, adicionando novas f
 
 Para detalhes sobre como colaborar, por favor leia nosso [Guia de Contribuição](CONTRIBUTING.md).
 
-Sinta-se livre para abrir PRs implementando qualquer um dos itens do To-Do acima!
-
-
+Sinta-se livre para abrir PRs implementando qualquer um dos itens acima!
