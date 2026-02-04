@@ -28,7 +28,7 @@ A biblioteca facilita a busca por municípios permitindo o uso de **atoms** (com
 alias ExIbge.Locality.Municipality
 
 # Buscar um município pelo ID
-iex> [sp] = Municipality.find(3550308)
+iex> Municipality.find(3550308)
 %ExIbge.Geography.Municipality{
   id: 3550308,
   name: "São Paulo",
@@ -37,7 +37,7 @@ iex> [sp] = Municipality.find(3550308)
 }
 
 # Buscar municípios ordenados por nome
-iex> {:ok, ordenados} = Municipality.all(order_by: "nome")
+iex> Municipality.all(order_by: "nome")
 [
   %ExIbge.Geography.Municipality{
     id: 3550308,
