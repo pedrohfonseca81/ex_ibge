@@ -1,4 +1,8 @@
 defmodule ExIbge.Aggregate.Metadata do
+  @moduledoc """
+  Struct representing metadata for an aggregate.
+  """
+
   defstruct [
     :id,
     :name,
@@ -25,10 +29,22 @@ defmodule ExIbge.Aggregate.Metadata do
       url: data["URL"],
       research: data["pesquisa"],
       subject: data["assunto"],
-      periodicity: data["periodicidade"],
+      periodicity: translate_periodicity(data["periodicidade"]),
       territorial_level: data["nivelTerritorial"],
       variables: Enum.map(data["variaveis"] || [], &Variable.from_map/1),
       classifications: Enum.map(data["classificacoes"] || [], &Classification.from_map/1)
     }
   end
+
+  defp translate_periodicity(nil), do: nil
+
+  defp translate_periodicity(p) when is_map(p) do
+    %{
+      frequency: p["frequencia"],
+      start: p["inicio"],
+      end: p["fim"]
+    }
+  end
+
+  defp translate_periodicity(p), do: p
 end

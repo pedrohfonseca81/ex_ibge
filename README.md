@@ -95,7 +95,7 @@ Abaixo estão os módulos e APIs do serviço de Localidades do IBGE que ainda pr
 - [ ] **hgeoHNOR** (Conversão de altitudes)
 - [ ] **Malhas Geográficas** (Malhas e formatos diversos)
 - [ ] **Metadados** (Metadados de pesquisas)
-- [ ] **Nomes** (Nomes mais comuns no Brasil)
+- [x] **Nomes** (Nomes mais comuns no Brasil)
 - [ ] **Notícias** (Agência IBGE Notícias)
 - [ ] **Países** (Indicadores socioeconômicos globais)
 - [ ] **Pesquisas** (Dados do Censo, Brasil Cidades, etc.)
@@ -105,6 +105,7 @@ Abaixo estão os módulos e APIs do serviço de Localidades do IBGE que ainda pr
 - [ ] **Publicações** (Biblioteca do IBGE)
 - [ ] **RBMC** (Rede Brasileira de Monitoramento Contínuo)
 - [ ] **RMPG** (Rede Maregráfica Permanente para Geodésia)
+
 
 ## Contribuindo
 
