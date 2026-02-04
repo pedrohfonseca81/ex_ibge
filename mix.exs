@@ -4,7 +4,7 @@ defmodule ExIbge.MixProject do
   def project do
     [
       app: :ex_ibge,
-      version: "0.2.0",
+      version: "0.2.1",
       elixir: "~> 1.18",
       start_permanent: Mix.env() == :prod,
       deps: deps(),
@@ -45,7 +45,13 @@ defmodule ExIbge.MixProject do
   defp docs do
     [
       main: "readme",
-      extras: ["README.md", "guides/localidades.md", "guides/agregados.md", "CONTRIBUTING.md"],
+      extras: [
+        "README.md",
+        "guides/localidades.md",
+        "guides/agregados.md",
+        "guides/nomes.md",
+        "CONTRIBUTING.md"
+      ],
       format: [:html, :markdown, :epub],
       api_reference: [line_length: 120]
     ]

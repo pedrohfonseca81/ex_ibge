@@ -4,7 +4,7 @@
 Desenvolvido para ser simples e fácil de integrar em qualquer projeto Elixir.
 
 [![Hex.pm](https://img.shields.io/hexpm/v/ex_ibge.svg)](https://hex.pm/packages/ex_ibge)
-[![Docs](https://img.shields.io/badge/docs-hexdocs-blue.svg)](https://hexdocs.pm/ex_ibge/0.2.0)
+[![Docs](https://img.shields.io/badge/docs-hexdocs-blue.svg)](https://hexdocs.pm/ex_ibge/0.2.1)
 
 ## Instalação
 
@@ -13,7 +13,7 @@ Adicione `ex_ibge` à sua lista de dependências no `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_ibge, "~> 0.2.0"}
+    {:ex_ibge, "~> 0.2.1"}
   ]
 end
 ```

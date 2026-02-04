@@ -22,7 +22,7 @@ defmodule ExIbge.Name do
     * `query` - Optional parameters:
       * `sexo`: Filter by sex ("M" for male, "F" for female).
       * `group_by`: Group results by geographic level (only "UF" is valid). Only works with a single name.
-      * `localidade`: Filter by locality ID (e.g., "BR", "33", "3300100").
+      * `localidade`: Filter by locality ID or atom (e.g., "BR", "33", `:rj`, "3300100").
 
   ## Examples
 
@@ -35,8 +35,8 @@ defmodule ExIbge.Name do
       iex> ExIbge.Name.frequency("ariel", sexo: "F")
       {:ok, [%ExIbge.Name.Frequency{name: "ARIEL", sex: "F", ...}]}
 
-      iex> ExIbge.Name.frequency("joao", group_by: "UF")
-      {:ok, [%ExIbge.Name.Frequency{locality: "11", ...}, ...]}
+      iex> ExIbge.Name.frequency("joao", localidade: :rj)
+      {:ok, [%ExIbge.Name.Frequency{name: "JOAO", locality: "33", ...}]}
 
   ## See Also
 
@@ -46,6 +46,7 @@ defmodule ExIbge.Name do
           {:ok, list(Frequency.t())} | {:error, any()}
   def frequency(names, query \\ []) do
     names = join_names(names)
+    query = convert_localidade(query)
 
     Req.get(Api.new!(:v2),
       url: "/censos/nomes/#{names}",
@@ -69,7 +70,7 @@ defmodule ExIbge.Name do
 
     * `query` - Optional parameters:
       * `decada`: Filter by decade of birth (e.g., "1950", "1980").
-      * `localidade`: Filter by locality ID (e.g., "BR", "33", "3300100").
+      * `localidade`: Filter by locality ID or atom (e.g., "BR", `:rj`, "3300100").
       * `sexo`: Filter by sex ("M" for male, "F" for female).
 
   ## Examples
@@ -80,8 +81,8 @@ defmodule ExIbge.Name do
       iex> ExIbge.Name.ranking(decada: "1950")
       {:ok, [%ExIbge.Name.Ranking{...}]}
 
-      iex> ExIbge.Name.ranking(localidade: "33", sexo: "F")
-      {:ok, [%ExIbge.Name.Ranking{locality: "33", sex: "F", ...}]}
+      iex> ExIbge.Name.ranking(localidade: :sp, sexo: "F")
+      {:ok, [%ExIbge.Name.Ranking{locality: "35", sex: "F", ...}]}
 
   ## See Also
 
@@ -89,6 +90,8 @@ defmodule ExIbge.Name do
   """
   @spec ranking(Keyword.t()) :: {:ok, list(Ranking.t())} | {:error, any()}
   def ranking(query \\ []) do
+    query = convert_localidade(query)
+
     Req.get(Api.new!(:v2),
       url: "/censos/nomes/ranking",
       params: Utils.to_camel_case(query)
@@ -106,6 +109,14 @@ defmodule ExIbge.Name do
 
   defp join_names(names) when is_list(names), do: Enum.join(names, "|")
   defp join_names(name) when is_binary(name), do: name
+
+  defp convert_localidade(query) do
+    case Keyword.get(query, :localidade) do
+      nil -> query
+      loc when is_atom(loc) -> Keyword.put(query, :localidade, Utils.join_ids(loc))
+      loc -> Keyword.put(query, :localidade, to_string(loc))
+    end
+  end
 
   defp handle_response({:ok, %{status: 200, body: data}}, schema) when is_list(data) do
     {:ok, Enum.map(data, &schema.from_map/1)}
