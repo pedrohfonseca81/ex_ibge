@@ -74,4 +74,11 @@ defmodule ExIbge.Aggregate.Variable do
       name: level["nome"]
     }
   end
+
+  def param_mappings do
+    %{
+      locations: :localidades,
+      classifications: :classificacao
+    }
+  end
 end

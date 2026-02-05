@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.Subdistrict do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.Subdistrict
 
   @moduledoc """
@@ -15,7 +16,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`).
 
   ## Examples
 
@@ -30,7 +31,7 @@ defmodule ExIbge.Locality.Subdistrict do
   def all(query \\ []) do
     Req.get(Api.new!(:v1),
       url: "/localidades/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -72,7 +73,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/subdistritos/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -115,7 +116,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/distritos/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -160,7 +161,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/municipios/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -208,7 +209,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -256,7 +257,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/mesorregioes/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -303,7 +304,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/microrregioes/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -350,7 +351,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-imediatas/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end
@@ -395,7 +396,7 @@ defmodule ExIbge.Locality.Subdistrict do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/subdistritos",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Subdistrict)
     )
     |> handle_response()
   end

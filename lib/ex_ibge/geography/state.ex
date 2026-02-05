@@ -14,4 +14,12 @@ defmodule ExIbge.Geography.State do
       region: ExIbge.Geography.Region.from_map(data["regiao"])
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      acronym: :sigla,
+      region: :regiao
+    }
+  end
 end

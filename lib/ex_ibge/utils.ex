@@ -53,6 +53,8 @@ defmodule ExIbge.Utils do
     |> camelize()
   end
 
+  defp camelize("UF"), do: "UF"
+
   defp camelize(key) when is_binary(key) do
     key
     |> Macro.camelize()

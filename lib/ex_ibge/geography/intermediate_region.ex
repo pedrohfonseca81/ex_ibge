@@ -13,4 +13,11 @@ defmodule ExIbge.Geography.IntermediateRegion do
       state: ExIbge.Geography.State.from_map(data["UF"])
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      state: :UF
+    }
+  end
 end

@@ -16,4 +16,11 @@ defmodule ExIbge.Geography.Country do
         ExIbge.Geography.IntermediateRegion.from_map(data["regiao-intermediaria"])
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      intermediate_region: :"regiao-intermediaria"
+    }
+  end
 end

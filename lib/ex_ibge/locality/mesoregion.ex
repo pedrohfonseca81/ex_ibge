@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.Mesoregion do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.Mesoregion
 
   @moduledoc """
@@ -15,7 +16,7 @@ defmodule ExIbge.Locality.Mesoregion do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`).
 
   ## Examples
 
@@ -28,7 +29,10 @@ defmodule ExIbge.Locality.Mesoregion do
   """
   @spec all(Keyword.t()) :: {:ok, list(Mesoregion.t())} | {:error, any()}
   def all(query \\ []) do
-    Req.get(Api.new!(:v1), url: "/localidades/mesorregioes", params: Utils.to_camel_case(query))
+    Req.get(Api.new!(:v1),
+      url: "/localidades/mesorregioes",
+      params: Query.build(query, Geography.Mesoregion)
+    )
     |> handle_response()
   end
 
@@ -69,7 +73,7 @@ defmodule ExIbge.Locality.Mesoregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/mesorregioes/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Mesoregion)
     )
     |> handle_response()
   end
@@ -118,7 +122,7 @@ defmodule ExIbge.Locality.Mesoregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}/mesorregioes",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Mesoregion)
     )
     |> handle_response()
   end
@@ -164,7 +168,7 @@ defmodule ExIbge.Locality.Mesoregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/mesorregioes",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Mesoregion)
     )
     |> handle_response()
   end

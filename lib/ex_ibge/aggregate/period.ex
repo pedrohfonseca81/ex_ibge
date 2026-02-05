@@ -13,4 +13,11 @@ defmodule ExIbge.Aggregate.Period do
       modification: data["modificacao"]
     }
   end
+
+  def param_mappings do
+    %{
+      literals: :literals,
+      modification: :modificacao
+    }
+  end
 end

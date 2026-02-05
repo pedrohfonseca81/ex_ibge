@@ -12,4 +12,10 @@ defmodule ExIbge.Aggregate.Aggregate do
       name: data["nome"]
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome
+    }
+  end
 end

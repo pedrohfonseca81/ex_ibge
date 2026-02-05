@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.UrbanAgglomeration do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.UrbanAgglomeration
 
   @moduledoc """
@@ -14,7 +15,7 @@ defmodule ExIbge.Locality.UrbanAgglomeration do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`, `municipio: 2611101`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`, `municipality: 2611101`).
 
   ## Examples
 
@@ -29,7 +30,7 @@ defmodule ExIbge.Locality.UrbanAgglomeration do
   def all(query \\ []) do
     Req.get(Api.new!(:v1),
       url: "/localidades/aglomeracoes-urbanas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.UrbanAgglomeration)
     )
     |> handle_response()
   end
@@ -71,7 +72,7 @@ defmodule ExIbge.Locality.UrbanAgglomeration do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/aglomeracoes-urbanas/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.UrbanAgglomeration)
     )
     |> handle_response()
   end

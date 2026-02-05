@@ -4,7 +4,7 @@
 Desenvolvido para ser simples e fácil de integrar em qualquer projeto Elixir.
 
 [![Hex.pm](https://img.shields.io/hexpm/v/ex_ibge.svg)](https://hex.pm/packages/ex_ibge)
-[![Docs](https://img.shields.io/badge/docs-hexdocs-blue.svg)](https://hexdocs.pm/ex_ibge/0.2.1)
+[![Docs](https://img.shields.io/badge/docs-hexdocs-blue.svg)](https://hexdocs.pm/ex_ibge/0.3.0)
 
 ## Instalação
 
@@ -13,11 +13,11 @@ Adicione `ex_ibge` à sua lista de dependências no `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_ibge, "~> 0.2.1"}
+    {:ex_ibge, "~> 0.3.0"}
   ]
 end
 ```
-
+ap
 ## Como Usar
 
 A biblioteca facilita a busca por municípios permitindo o uso de **atoms** (como `:sp`, `:rj`) para identificar estados, além de suportar filtros nativos da API.
@@ -37,7 +37,7 @@ iex> Municipality.find(3550308)
 }
 
 # Buscar municípios ordenados por nome
-iex> Municipality.all(order_by: "nome")
+iex> Municipality.all(order_by: :name)
 [
   %ExIbge.Geography.Municipality{
     id: 3550308,
@@ -109,7 +109,7 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 - [ ] RMPG (Rede Maregráfica Permanente para Geodésia)
 
 ### Melhorias
-- [ ] **Consistência de idiomas**: A API do IBGE utiliza parâmetros em português (ex: `order_by: "nome"`), mas as structs retornadas usam campos em inglês (ex: `name`). Avaliar se devemos aceitar ambos os formatos ou padronizar.
+- [x] **Consistência de idiomas**: A API do IBGE utiliza parâmetros em português (ex: `order_by: "nome"`), mas as structs retornadas usam campos em inglês (ex: `name`). Avaliar se devemos aceitar ambos os formatos ou padronizar.
 - [ ] **Exemplos práticos com Elixir & Gleam**: Criar exemplos de uso real da biblioteca demonstrando análise de dados geográficos e estatísticos do IBGE.
 
 ## Contribuindo

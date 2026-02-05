@@ -13,4 +13,11 @@ defmodule ExIbge.Geography.District do
       municipality: ExIbge.Geography.Municipality.from_map(data["municipio"])
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      municipality: :municipio
+    }
+  end
 end

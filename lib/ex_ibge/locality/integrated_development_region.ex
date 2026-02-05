@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.IntegratedDevelopmentRegion do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.IntegratedDevelopmentRegion
 
   @moduledoc """
@@ -14,7 +15,7 @@ defmodule ExIbge.Locality.IntegratedDevelopmentRegion do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`, `municipio: 2611101`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`, `municipality: 2611101`).
 
   ## Examples
 
@@ -29,7 +30,7 @@ defmodule ExIbge.Locality.IntegratedDevelopmentRegion do
   def all(query \\ []) do
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-integradas-de-desenvolvimento",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.IntegratedDevelopmentRegion)
     )
     |> handle_response()
   end
@@ -71,7 +72,7 @@ defmodule ExIbge.Locality.IntegratedDevelopmentRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-integradas-de-desenvolvimento/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.IntegratedDevelopmentRegion)
     )
     |> handle_response()
   end

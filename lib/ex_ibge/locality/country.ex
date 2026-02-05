@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.Country do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.Country
 
   @moduledoc """
@@ -14,7 +15,7 @@ defmodule ExIbge.Locality.Country do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`).
 
   ## Examples
 
@@ -29,7 +30,7 @@ defmodule ExIbge.Locality.Country do
   def all(query \\ []) do
     Req.get(Api.new!(:v1),
       url: "/localidades/paises",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Country)
     )
     |> handle_response()
   end
@@ -71,7 +72,7 @@ defmodule ExIbge.Locality.Country do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/paises/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Country)
     )
     |> handle_response()
   end

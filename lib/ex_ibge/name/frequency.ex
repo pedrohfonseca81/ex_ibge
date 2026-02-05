@@ -32,4 +32,12 @@ defmodule ExIbge.Name.Frequency do
       }
     end)
   end
+
+  def param_mappings do
+    %{
+      sex: :sexo,
+      locality: :localidade,
+      group_by: :groupBy
+    }
+  end
 end

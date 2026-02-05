@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.State do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.State
 
   @moduledoc """
@@ -15,14 +16,14 @@ defmodule ExIbge.Locality.State do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`).
 
   ## Examples
 
       iex> ExIbge.Locality.State.all()
       {:ok, [%ExIbge.Geography.State{id: 35, acronym: "SP", name: "São Paulo", ...}, ...]}
 
-      iex> ExIbge.Locality.State.all(order_by: "nome")
+      iex> ExIbge.Locality.State.all(order_by: :name)
       {:ok, [%ExIbge.Geography.State{id: 35, acronym: "SP", name: "São Paulo", ...}, ...]}
 
   ## See Also
@@ -31,7 +32,10 @@ defmodule ExIbge.Locality.State do
   """
   @spec all(Keyword.t()) :: {:ok, list(State.t())} | {:error, any()}
   def all(query \\ []) do
-    Req.get(Api.new!(:v1), url: "/localidades/estados", params: Utils.to_camel_case(query))
+    Req.get(Api.new!(:v1),
+      url: "/localidades/estados",
+      params: Query.build(query, Geography.State)
+    )
     |> handle_response()
   end
 
@@ -83,7 +87,7 @@ defmodule ExIbge.Locality.State do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.State)
     )
     |> handle_response()
   end
@@ -131,7 +135,7 @@ defmodule ExIbge.Locality.State do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/estados",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.State)
     )
     |> handle_response()
   end

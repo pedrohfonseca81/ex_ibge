@@ -14,4 +14,12 @@ defmodule ExIbge.Geography.UrbanAgglomeration do
         Enum.map(data["municipios"] || [], &ExIbge.Geography.Municipality.from_map/1)
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      municipalities: :municipios,
+      municipality: :municipio
+    }
+  end
 end

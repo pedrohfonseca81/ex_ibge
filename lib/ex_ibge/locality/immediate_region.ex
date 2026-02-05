@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.ImmediateRegion do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.ImmediateRegion
 
   @moduledoc """
@@ -15,7 +16,7 @@ defmodule ExIbge.Locality.ImmediateRegion do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`).
 
   ## Examples
 
@@ -30,7 +31,7 @@ defmodule ExIbge.Locality.ImmediateRegion do
   def all(query \\ []) do
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-imediatas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.ImmediateRegion)
     )
     |> handle_response()
   end
@@ -72,7 +73,7 @@ defmodule ExIbge.Locality.ImmediateRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-imediatas/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.ImmediateRegion)
     )
     |> handle_response()
   end
@@ -121,7 +122,7 @@ defmodule ExIbge.Locality.ImmediateRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}/regioes-imediatas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.ImmediateRegion)
     )
     |> handle_response()
   end
@@ -169,7 +170,7 @@ defmodule ExIbge.Locality.ImmediateRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-intermediarias/#{ids}/regioes-imediatas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.ImmediateRegion)
     )
     |> handle_response()
   end
@@ -214,7 +215,7 @@ defmodule ExIbge.Locality.ImmediateRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/regioes-imediatas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.ImmediateRegion)
     )
     |> handle_response()
   end

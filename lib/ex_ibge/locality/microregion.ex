@@ -11,6 +11,7 @@ defmodule ExIbge.Locality.Microregion do
 
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.Microregion
 
   @doc """
@@ -18,7 +19,7 @@ defmodule ExIbge.Locality.Microregion do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`).
 
   ## Examples
 
@@ -31,7 +32,10 @@ defmodule ExIbge.Locality.Microregion do
   """
   @spec all(Keyword.t()) :: {:ok, list(Microregion.t())} | {:error, any()}
   def all(query \\ []) do
-    Req.get(Api.new!(:v1), url: "/localidades/microrregioes", params: Utils.to_camel_case(query))
+    Req.get(Api.new!(:v1),
+      url: "/localidades/microrregioes",
+      params: Query.build(query, Geography.Microregion)
+    )
     |> handle_response()
   end
 
@@ -67,7 +71,7 @@ defmodule ExIbge.Locality.Microregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/microrregioes/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Microregion)
     )
     |> handle_response()
   end
@@ -110,7 +114,7 @@ defmodule ExIbge.Locality.Microregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}/microrregioes",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Microregion)
     )
     |> handle_response()
   end
@@ -150,7 +154,7 @@ defmodule ExIbge.Locality.Microregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/mesorregioes/#{ids}/microrregioes",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Microregion)
     )
     |> handle_response()
   end
@@ -188,7 +192,7 @@ defmodule ExIbge.Locality.Microregion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/microrregioes",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.Microregion)
     )
     |> handle_response()
   end

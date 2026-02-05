@@ -31,4 +31,12 @@ defmodule ExIbge.Name.Ranking do
       }
     end)
   end
+
+  def param_mappings do
+    %{
+      decade: :decada,
+      locality: :localidade,
+      sex: :sexo
+    }
+  end
 end

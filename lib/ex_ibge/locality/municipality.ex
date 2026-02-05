@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.Municipality do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
 
   @moduledoc """
   Module for handling Municipality (Município) queries from IBGE.
@@ -19,14 +20,17 @@ defmodule ExIbge.Locality.Municipality do
 
   Example with query:
 
-      iex> ExIbge.Locality.Municipality.all(order_by: "nome", view: "nivelado")
+      iex> ExIbge.Locality.Municipality.all(order_by: :name, view: "nivelado")
       {:ok, [%ExIbge.Geography.Municipality{id: 1100015, name: "Alta Floresta D'Oeste", ...}, ...]}
 
   For more information, see the [IBGE API documentation](https://servicodados.ibge.gov.br/api/docs/localidades#api-Municipios-municipiosGet).
   """
   @spec all(Keyword.t()) :: {:ok, list(ExIbge.Geography.Municipality.t())} | {:error, any()}
   def all(query \\ []) do
-    Req.get(Api.new!(:v1), url: "/localidades/municipios", params: Utils.to_camel_case(query))
+    Req.get(Api.new!(:v1),
+      url: "/localidades/municipios",
+      params: Query.build(query, ExIbge.Geography.Municipality)
+    )
     |> handle_response()
   end
 
@@ -65,7 +69,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/municipios/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end
@@ -111,7 +115,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}/municipios",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end
@@ -147,7 +151,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/mesorregioes/#{ids}/municipios",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end
@@ -178,7 +182,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/microrregioes/#{ids}/municipios",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end
@@ -211,7 +215,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-imediatas/#{ids}/municipios",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end
@@ -246,7 +250,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-intermediarias/#{ids}/municipios",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end
@@ -279,7 +283,7 @@ defmodule ExIbge.Locality.Municipality do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/municipios",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, ExIbge.Geography.Municipality)
     )
     |> handle_response()
   end

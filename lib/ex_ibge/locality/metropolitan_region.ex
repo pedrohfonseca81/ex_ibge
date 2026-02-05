@@ -1,6 +1,7 @@
 defmodule ExIbge.Locality.MetropolitanRegion do
   alias ExIbge.Api
   alias ExIbge.Utils
+  alias ExIbge.Query
   alias ExIbge.Geography.MetropolitanRegion
 
   @moduledoc """
@@ -15,7 +16,7 @@ defmodule ExIbge.Locality.MetropolitanRegion do
 
   ## Parameters
 
-    * `query` - Optional parameters supported by the API (e.g., `order_by: "nome"`, `municipio: 4204202`).
+    * `query` - Optional parameters supported by the API (e.g., `order_by: :name`, `municipality: 4204202`).
 
   ## Examples
 
@@ -30,7 +31,7 @@ defmodule ExIbge.Locality.MetropolitanRegion do
   def all(query \\ []) do
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-metropolitanas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.MetropolitanRegion)
     )
     |> handle_response()
   end
@@ -72,7 +73,7 @@ defmodule ExIbge.Locality.MetropolitanRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes-metropolitanas/#{ids}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.MetropolitanRegion)
     )
     |> handle_response()
   end
@@ -121,7 +122,7 @@ defmodule ExIbge.Locality.MetropolitanRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/estados/#{ids}/regioes-metropolitanas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.MetropolitanRegion)
     )
     |> handle_response()
   end
@@ -167,7 +168,7 @@ defmodule ExIbge.Locality.MetropolitanRegion do
 
     Req.get(Api.new!(:v1),
       url: "/localidades/regioes/#{ids}/regioes-metropolitanas",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Geography.MetropolitanRegion)
     )
     |> handle_response()
   end

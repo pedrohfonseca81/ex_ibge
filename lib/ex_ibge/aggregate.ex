@@ -1,6 +1,7 @@
 defmodule ExIbge.Aggregate do
   alias ExIbge.Api
-  alias ExIbge.Utils
+  alias ExIbge.Api
+  alias ExIbge.Query
 
   alias ExIbge.Aggregate.{
     Research,
@@ -21,11 +22,11 @@ defmodule ExIbge.Aggregate do
   ## Parameters
 
     * `query` - Optional parameters:
-      * `periodo`: Filter by period (e.g. "P5[202001]")
-      * `assunto`: Filter by subject ID (e.g. 70)
-      * `classificacao`: Filter by classification ID (e.g. 12896)
-      * `periodicidade`: Filter by periodicity (e.g. "P5")
-      * `nivel`: Filter by geographical level (e.g. "N6")
+      * `period`: Filter by period (e.g. "P5[202001]")
+      * `subject`: Filter by subject ID (e.g. 70)
+      * `classification`: Filter by classification ID (e.g. 12896)
+      * `periodicity`: Filter by periodicity (e.g. "P5")
+      * `level`: Filter by geographical level (e.g. "N6")
 
   ## Examples
 
@@ -40,7 +41,7 @@ defmodule ExIbge.Aggregate do
   def all(query \\ []) do
     Req.get(Api.new!(:v3),
       url: "/agregados",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Research)
     )
     |> handle_response(Research)
   end
@@ -155,13 +156,13 @@ defmodule ExIbge.Aggregate do
     * `periods` - Period identifier(s) (e.g. "-6", "201701", "201701-201706")
     * `variables` - Variable identifier(s) (e.g. "214", "all", "allxp"). Defaults to "allxp" if nil.
     * `query` - Additional query parameters:
-      * `localidades`: Required. Location filter (e.g. "BR", "N6[3304557]")
-      * `classificacao`: Optional. Classification filter (e.g. "226[4844]")
+      * `locations`: Required. Location filter (e.g. "BR", "N6[3304557]")
+      * `classifications`: Optional. Classification filter (e.g. "226[4844]")
       * `view`: Optional. "OLAP" or "flat".
 
   ## Examples
 
-      iex> ExIbge.Aggregate.get_variables(1712, "-6", "214", localidades: "BR")
+      iex> ExIbge.Aggregate.get_variables(1712, "-6", "214", locations: "BR")
       {:ok, [%ExIbge.Aggregate.Variable{...}, ...]}
 
   ## See Also
@@ -179,7 +180,7 @@ defmodule ExIbge.Aggregate do
 
     Req.get(Api.new!(:v3),
       url: "/agregados/#{aggregate_id}/periodos/#{periods}/variaveis/#{variables}",
-      params: Utils.to_camel_case(query)
+      params: Query.build(query, Variable)
     )
     |> handle_response(Variable)
   end

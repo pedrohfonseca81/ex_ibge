@@ -13,4 +13,14 @@ defmodule ExIbge.Aggregate.Research do
       aggregates: Enum.map(data["agregados"] || [], &ExIbge.Aggregate.Aggregate.from_map/1)
     }
   end
+
+  def param_mappings do
+    %{
+      period: :periodo,
+      subject: :assunto,
+      classification: :classificacao,
+      periodicity: :periodicidade,
+      level: :nivel
+    }
+  end
 end

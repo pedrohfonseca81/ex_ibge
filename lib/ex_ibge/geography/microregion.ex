@@ -13,4 +13,11 @@ defmodule ExIbge.Geography.Microregion do
       mesoregion: ExIbge.Geography.Mesoregion.from_map(data["mesorregiao"])
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      mesoregion: :mesorregiao
+    }
+  end
 end

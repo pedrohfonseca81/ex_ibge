@@ -34,4 +34,11 @@ defmodule ExIbge.Aggregate.Classification do
   end
 
   defp translate_categories(_), do: []
+
+  def param_mappings do
+    %{
+      name: :nome,
+      categories: :categorias
+    }
+  end
 end

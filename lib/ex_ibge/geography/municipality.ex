@@ -18,4 +18,12 @@ defmodule ExIbge.Geography.Municipality do
       immediate_region: ExIbge.Geography.ImmediateRegion.from_map(data["regiao-imediata"])
     }
   end
+
+  def param_mappings do
+    %{
+      name: :nome,
+      microregion: :microrregiao,
+      immediate_region: :"regiao-imediata"
+    }
+  end
 end

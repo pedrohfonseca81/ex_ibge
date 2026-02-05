@@ -47,4 +47,17 @@ defmodule ExIbge.Aggregate.Metadata do
   end
 
   defp translate_periodicity(p), do: p
+
+  def param_mappings do
+    %{
+      name: :nome,
+      url: :URL,
+      research: :pesquisa,
+      subject: :assunto,
+      periodicity: :periodicidade,
+      territorial_level: :nivelTerritorial,
+      variables: :variaveis,
+      classifications: :classificacoes
+    }
+  end
 end
