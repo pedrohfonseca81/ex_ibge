@@ -1,10 +1,10 @@
 # ExIbge
 
-**ExIbge** é um cliente Elixir amigável e moderno para a API de Localidades do IBGE.  
+**ExIbge** é um cliente Elixir amigável e moderno para as APIs do IBGE.  
 Desenvolvido para ser simples e fácil de integrar em qualquer projeto Elixir.
 
 [![Hex.pm](https://img.shields.io/hexpm/v/ex_ibge.svg)](https://hex.pm/packages/ex_ibge)
-[![Docs](https://img.shields.io/badge/docs-hexdocs-blue.svg)](https://hexdocs.pm/ex_ibge/0.3.0)
+[![Docs](https://img.shields.io/badge/docs-hexdocs-blue.svg)](https://hexdocs.pm/ex_ibge/0.4.0)
 
 ## Instalação
 
@@ -13,11 +13,11 @@ Adicione `ex_ibge` à sua lista de dependências no `mix.exs`:
 ```elixir
 def deps do
   [
-    {:ex_ibge, "~> 0.3.0"}
+    {:ex_ibge, "~> 0.4.0"}
   ]
 end
 ```
-ap
+
 ## Como Usar
 
 A biblioteca facilita a busca por municípios permitindo o uso de **atoms** (como `:sp`, `:rj`) para identificar estados, além de suportar filtros nativos da API.
@@ -85,6 +85,8 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 ### Outras APIs
 - **Agregados** (`ExIbge.Aggregate`) - Séries históricas e pesquisas (SIDRA)
 - **Nomes** (`ExIbge.Name`) - Frequência de nomes no Censo
+- **BNGB** (`ExIbge.Bngb`) - Banco de Nomes Geográficos do Brasil
+- **Calendário** (`ExIbge.Calendar`) - Cronograma de divulgações do IBGE
 
 ---
 
@@ -92,8 +94,8 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 
 ### Criar novas funcionalidades
 - [ ] Banco de Dados Geodésicos
-- [ ] BNGB (Banco de Nomes Geográficos do Brasil)
-- [ ] Calendário (Cronograma de ações e publicações)
+- [x] BNGB (Banco de Nomes Geográficos do Brasil)
+- [x] Calendário (Cronograma de ações e publicações)
 - [ ] CNAE (Classificação Nacional de Atividades Econômicas)
 - [ ] hgeoHNOR (Conversão de altitudes)
 - [ ] Malhas Geográficas
@@ -109,7 +111,6 @@ Os retornos são structs Elixir devidamente mapeadas, facilitando o pattern matc
 - [ ] RMPG (Rede Maregráfica Permanente para Geodésia)
 
 ### Melhorias
-- [x] **Consistência de idiomas**: A API do IBGE utiliza parâmetros em português (ex: `order_by: "nome"`), mas as structs retornadas usam campos em inglês (ex: `name`). Avaliar se devemos aceitar ambos os formatos ou padronizar.
 - [ ] **Exemplos práticos com Elixir & Gleam**: Criar exemplos de uso real da biblioteca demonstrando análise de dados geográficos e estatísticos do IBGE.
 
 ## Contribuindo
