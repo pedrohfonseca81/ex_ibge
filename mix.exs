@@ -50,6 +50,8 @@ defmodule ExIbge.MixProject do
         "guides/localidades.md",
         "guides/agregados.md",
         "guides/nomes.md",
+        "guides/bngb.md",
+        "guides/calendario.md",
         "CONTRIBUTING.md"
       ],
       format: [:html, :markdown, :epub],

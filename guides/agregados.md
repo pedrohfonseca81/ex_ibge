@@ -24,7 +24,7 @@ Para encontrar dados, você geralmente começa listando os agregados de uma pesq
 alias ExIbge.Aggregate
 
 # Listar pesquisas sobre "Abate de animais" (assunto 70)
-Aggregate.all(assunto: 70)
+Aggregate.all(subject: 70)
 
 # Ver metadados de um agregado específico (ex: 1705)
 # Isso mostra quais variáveis e classificações estão disponíveis
@@ -52,8 +52,8 @@ Aggregate.get_variables(
   1612,               # ID do Agregado
   "-3",               # Períodos (últimos 3)
   "214",              # ID da Variável
-  localidades: "BR",  # Filtro de localidade
-  classificacao: "81[2688]" # Classificação
+  locations: "BR",  # Filtro de localidade
+  classifications: "81[2688]" # Classificação
 )
 ```
 
@@ -66,7 +66,7 @@ Aggregate.get_variables(
   1737,               # Agregado do IPCA
   "202312",           # Período (Dez/2023)
   "2265",             # Variável (IPCA acumulado 12 meses)
-  localidades: "N7[3301]" # Região Metropolitana do RJ
+  locations: "N7[3301]" # Região Metropolitana do RJ
 )
 ```
 

@@ -1,4 +1,4 @@
-# Guia de nomes
+# Guia de Nomes
 
 O módulo `ExIbge.Name` permite consultar a frequência de nomes no Brasil, baseado nos dados do Censo 2010.
 
@@ -37,8 +37,8 @@ ExIbge.Name.frequency!(["joao", "maria"])
 ### Filtrar por sexo
 
 ```elixir
-ExIbge.Name.frequency!("ariel", sexo: "F")
-ExIbge.Name.frequency!("ariel", sexo: "M")
+ExIbge.Name.frequency!("ariel", sex: "F")
+ExIbge.Name.frequency!("ariel", sex: "M")
 ```
 
 ### Agrupar por UF
@@ -51,13 +51,13 @@ ExIbge.Name.frequency!("joao", group_by: "UF")
 
 ```elixir
 # Por estado usando atom
-ExIbge.Name.frequency!("joao", localidade: :rj)
+ExIbge.Name.frequency!("joao", locality: :rj)
 
 # Por estado usando ID
-ExIbge.Name.frequency!("joao", localidade: "33")
+ExIbge.Name.frequency!("joao", locality: "33")
 
 # Por município (Angra dos Reis = 3300100)
-ExIbge.Name.frequency!("joao", localidade: "3300100")
+ExIbge.Name.frequency!("joao", locality: "3300100")
 ```
 
 ## Ranking
@@ -80,20 +80,20 @@ ExIbge.Name.ranking!()
 ### Ranking por década
 
 ```elixir
-ExIbge.Name.ranking!(decada: "1980")
+ExIbge.Name.ranking!(decade: "1980")
 ```
 
 ### Ranking por sexo
 
 ```elixir
-ExIbge.Name.ranking!(sexo: "F")
-ExIbge.Name.ranking!(sexo: "M")
+ExIbge.Name.ranking!(sex: "F")
+ExIbge.Name.ranking!(sex: "M")
 ```
 
 ### Ranking por localidade
 
 ```elixir
-ExIbge.Name.ranking!(localidade: "33")
+ExIbge.Name.ranking!(locality: "33")
 ```
 
 ## Limitações
